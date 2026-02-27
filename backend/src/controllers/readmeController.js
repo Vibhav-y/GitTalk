@@ -91,7 +91,7 @@ Please generate the Markdown README now based exclusively on the facts provided 
 
     // 3. Generate via OpenAI
     const completion = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
+      model: "gpt-5-nano-2025-08-07",
       messages: [
         { role: "system", content: systemInstruction },
         { role: "user", content: prompt }
