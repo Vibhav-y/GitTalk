@@ -96,7 +96,6 @@ Please generate the Markdown README now based exclusively on the facts provided 
         { role: "system", content: systemInstruction },
         { role: "user", content: prompt }
       ],
-      temperature: 0.7,
     });
     
     const aiMarkdown = completion.choices[0].message.content;
@@ -145,10 +144,10 @@ export const saveReadme = async (req, res, next) => {
 };
 
 export const chatReadme = async (req, res, next) => {
-  const { currentMarkdown, prompt } = req.body;
+  const { currentMarkdown = '', prompt } = req.body;
   
-  if (!currentMarkdown || !prompt) {
-    return res.status(400).json({ error: "Missing currentMarkdown or prompt" });
+  if (!prompt) {
+    return res.status(400).json({ error: "Missing prompt" });
   }
 
   const repoMatch = currentMarkdown.match(/github\.com\/([^/\s]+)\/([^/\s)]+)/);
@@ -203,7 +202,6 @@ IMPORTANT: Keep "---\\n*Made with: [gittool.dev](https://gittool.dev)*" at the v
         { role: "system", content: "You are a professional README editor with deep knowledge of GitHub markdown, shields.io badges, and readme widgets. When users ask to add socials, stats, or badges, use the exact widget templates from the reference." },
         { role: "user", content: aiPrompt }
       ],
-      temperature: 0.7,
     });
     
     const refinedMarkdown = completion.choices[0].message.content;
