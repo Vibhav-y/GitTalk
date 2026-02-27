@@ -157,6 +157,75 @@ export default function EditProject() {
                     snippet: `\n\n## 🤝 Contributors\n\n<a href="https://github.com/${owner}/${repo}/graphs/contributors">\n  <img src="https://contrib.rocks/image?repo=${owner}/${repo}" />\n</a>\n`
                 },
             ]
+        },
+        {
+            category: 'Socials',
+            items: [
+                {
+                    name: 'Twitter / X', icon: <ExternalLink size={16} />, desc: 'Twitter profile badge',
+                    snippet: `\n\n[![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/your_username)\n`
+                },
+                {
+                    name: 'LinkedIn', icon: <ExternalLink size={16} />, desc: 'LinkedIn profile badge',
+                    snippet: `\n\n[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your_username)\n`
+                },
+                {
+                    name: 'YouTube', icon: <ExternalLink size={16} />, desc: 'YouTube channel badge',
+                    snippet: `\n\n[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@your_channel)\n`
+                },
+                {
+                    name: 'Discord', icon: <ExternalLink size={16} />, desc: 'Discord server invite',
+                    snippet: `\n\n[![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/your_invite)\n`
+                },
+                {
+                    name: 'Instagram', icon: <ExternalLink size={16} />, desc: 'Instagram profile badge',
+                    snippet: `\n\n[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/your_username)\n`
+                },
+                {
+                    name: 'Reddit', icon: <ExternalLink size={16} />, desc: 'Reddit profile badge',
+                    snippet: `\n\n[![Reddit](https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&logo=reddit&logoColor=white)](https://reddit.com/user/your_username)\n`
+                },
+                {
+                    name: 'Twitch', icon: <ExternalLink size={16} />, desc: 'Twitch channel badge',
+                    snippet: `\n\n[![Twitch](https://img.shields.io/badge/Twitch-9146FF?style=for-the-badge&logo=twitch&logoColor=white)](https://twitch.tv/your_username)\n`
+                },
+                {
+                    name: 'Medium', icon: <ExternalLink size={16} />, desc: 'Medium blog badge',
+                    snippet: `\n\n[![Medium](https://img.shields.io/badge/Medium-000000?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@your_username)\n`
+                },
+                {
+                    name: 'Dev.to', icon: <ExternalLink size={16} />, desc: 'Dev.to profile badge',
+                    snippet: `\n\n[![Dev.to](https://img.shields.io/badge/Dev.to-0A0A0A?style=for-the-badge&logo=devdotto&logoColor=white)](https://dev.to/your_username)\n`
+                },
+                {
+                    name: 'Stack Overflow', icon: <ExternalLink size={16} />, desc: 'Stack Overflow profile',
+                    snippet: `\n\n[![Stack Overflow](https://img.shields.io/badge/Stack_Overflow-F58025?style=for-the-badge&logo=stackoverflow&logoColor=white)](https://stackoverflow.com/users/your_id)\n`
+                },
+                {
+                    name: 'Telegram', icon: <ExternalLink size={16} />, desc: 'Telegram contact badge',
+                    snippet: `\n\n[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/your_username)\n`
+                },
+                {
+                    name: 'Email', icon: <ExternalLink size={16} />, desc: 'Email contact badge',
+                    snippet: `\n\n[![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your@email.com)\n`
+                },
+                {
+                    name: 'Portfolio', icon: <ExternalLink size={16} />, desc: 'Personal website badge',
+                    snippet: `\n\n[![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://your-portfolio.com)\n`
+                },
+                {
+                    name: 'Hashnode', icon: <ExternalLink size={16} />, desc: 'Hashnode blog badge',
+                    snippet: `\n\n[![Hashnode](https://img.shields.io/badge/Hashnode-2962FF?style=for-the-badge&logo=hashnode&logoColor=white)](https://hashnode.com/@your_username)\n`
+                },
+                {
+                    name: 'Buy Me A Coffee', icon: <ExternalLink size={16} />, desc: 'Support / donation badge',
+                    snippet: `\n\n[![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/your_username)\n`
+                },
+                {
+                    name: 'Social Row (All)', icon: <Users size={16} />, desc: 'Centered row of all socials',
+                    snippet: `\n\n<p align="center">\n  <a href="https://twitter.com/your_username"><img src="https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white" /></a>\n  <a href="https://linkedin.com/in/your_username"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" /></a>\n  <a href="https://instagram.com/your_username"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white" /></a>\n  <a href="https://discord.gg/your_invite"><img src="https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" /></a>\n  <a href="mailto:your@email.com"><img src="https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white" /></a>\n</p>\n`
+                },
+            ]
         }
     ];
 

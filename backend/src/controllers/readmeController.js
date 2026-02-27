@@ -150,26 +150,56 @@ export const chatReadme = async (req, res, next) => {
     return res.status(400).json({ error: "Missing currentMarkdown or prompt" });
   }
 
-  try {
-    const aiPrompt = `You are an expert technical writer and developer advocate assisting a user in refining their GitHub README.md file. 
+  const repoMatch = currentMarkdown.match(/github\.com\/([^/\s]+)\/([^/\s)]+)/);
+  const owner = repoMatch ? repoMatch[1] : 'username';
+  const repo = repoMatch ? repoMatch[2].replace(/[)"'\]]/g, '') : 'repo';
 
-Here is the CURRENT MARKDOWN:
+  try {
+    const widgetRef = `
+WIDGET REFERENCE — Use these EXACT formats when the user asks to add badges, socials, stats, or widgets:
+
+SOCIAL BADGES (shields.io):
+- Twitter: [![Twitter](https://img.shields.io/badge/Twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/your_username)
+- LinkedIn: [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/your_username)
+- YouTube: [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/@your_channel)
+- Discord: [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/your_invite)
+- Instagram: [![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/your_username)
+- Email: [![Email](https://img.shields.io/badge/Email-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:your@email.com)
+- Portfolio: [![Portfolio](https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://your-portfolio.com)
+- Buy Me A Coffee: [![Buy Me A Coffee](https://img.shields.io/badge/Buy_Me_A_Coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black)](https://buymeacoffee.com/your_username)
+
+REPO BADGES:
+- Stars: ![Stars](https://img.shields.io/github/stars/${owner}/${repo}?style=for-the-badge&color=22d3ee&labelColor=0d1117)
+- Forks: ![Forks](https://img.shields.io/github/forks/${owner}/${repo}?style=for-the-badge&color=818cf8&labelColor=0d1117)
+- License: ![License](https://img.shields.io/github/license/${owner}/${repo}?style=for-the-badge&color=f59e0b&labelColor=0d1117)
+- Last Commit: ![Last Commit](https://img.shields.io/github/last-commit/${owner}/${repo}?style=for-the-badge&color=22d3ee&labelColor=0d1117)
+
+PROFILE STATS:
+- Profile Card: <p align="center"><img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=${owner}&theme=github_dark" /></p>
+- Streak: <p align="center"><img src="https://streak-stats.demolab.com?user=${owner}&theme=dark&hide_border=true&background=0d1117" /></p>
+
+CONTRIBUTORS:
+- <a href="https://github.com/${owner}/${repo}/graphs/contributors"><img src="https://contrib.rocks/image?repo=${owner}/${repo}" /></a>
+
+When adding multiple socials, wrap them in a centered block: <p align="center">...badges...</p>`;
+
+    const aiPrompt = `You are an expert technical writer assisting a user in editing their GitHub README.md.
+
+CURRENT MARKDOWN:
 \`\`\`markdown
 ${currentMarkdown}
 \`\`\`
 
-USER REQUEST TO MODIFY THE README:
-"${prompt}"
+USER REQUEST: "${prompt}"
+${widgetRef}
 
-Please apply the user's modifications to the markdown. 
-RETURN ONLY THE NEW FULL RAW MARKDOWN. Do not wrap it in markdown backticks. Make sure everything flows cohesively.
-IMPORTANT: ALWAYS ensure the exact string "---
-*Made with: [gittool.dev](https://gittool.dev)*" appears at the very end of the file. If it was removed, add it back.`;
+Apply the user's request. RETURN ONLY the full raw markdown (no wrapping backticks).
+IMPORTANT: Keep "---\\n*Made with: [gittool.dev](https://gittool.dev)*" at the very end.`;
 
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [
-        { role: "system", content: "You are a professional README editor." },
+        { role: "system", content: "You are a professional README editor with deep knowledge of GitHub markdown, shields.io badges, and readme widgets. When users ask to add socials, stats, or badges, use the exact widget templates from the reference." },
         { role: "user", content: aiPrompt }
       ],
       temperature: 0.7,
